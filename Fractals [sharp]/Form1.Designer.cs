@@ -29,9 +29,10 @@ namespace Fractals__sharp_
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainImage = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,7 @@ namespace Fractals__sharp_
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MainImage)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -72,28 +74,18 @@ namespace Fractals__sharp_
             this.MainImage.Size = new System.Drawing.Size(1185, 728);
             this.MainImage.TabIndex = 0;
             this.MainImage.TabStop = false;
+            this.MainImage.Click += new System.EventHandler(this.MainImage_Click);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(963, 769);
+            this.button1.Location = new System.Drawing.Point(1083, 769);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 48);
             this.button1.TabIndex = 1;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(1083, 769);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 48);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Обновить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -146,12 +138,11 @@ namespace Fractals__sharp_
             this.panelDefault.Name = "panelDefault";
             this.panelDefault.Size = new System.Drawing.Size(730, 57);
             this.panelDefault.TabIndex = 5;
-            this.panelDefault.Click += new System.EventHandler(this.panel1_Click);
             // 
             // color2
             // 
             this.color2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.color2.Location = new System.Drawing.Point(904, 793);
+            this.color2.Location = new System.Drawing.Point(1024, 793);
             this.color2.Name = "color2";
             this.color2.Size = new System.Drawing.Size(53, 29);
             this.color2.TabIndex = 1;
@@ -160,7 +151,7 @@ namespace Fractals__sharp_
             // color1
             // 
             this.color1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.color1.Location = new System.Drawing.Point(904, 765);
+            this.color1.Location = new System.Drawing.Point(1024, 765);
             this.color1.Name = "color1";
             this.color1.Size = new System.Drawing.Size(53, 29);
             this.color1.TabIndex = 2;
@@ -169,7 +160,7 @@ namespace Fractals__sharp_
             // numericUpDown1
             // 
             this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Location = new System.Drawing.Point(748, 793);
+            this.numericUpDown1.Location = new System.Drawing.Point(868, 793);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             40,
             0,
@@ -193,7 +184,7 @@ namespace Fractals__sharp_
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(748, 765);
+            this.label1.Location = new System.Drawing.Point(868, 765);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 25);
             this.label1.TabIndex = 7;
@@ -212,7 +203,7 @@ namespace Fractals__sharp_
             this.panelTree.Controls.Add(this.numericUpDown5);
             this.panelTree.Location = new System.Drawing.Point(12, 765);
             this.panelTree.Name = "panelTree";
-            this.panelTree.Size = new System.Drawing.Size(730, 57);
+            this.panelTree.Size = new System.Drawing.Size(850, 57);
             this.panelTree.TabIndex = 10;
             // 
             // label4
@@ -309,24 +300,28 @@ namespace Fractals__sharp_
             0});
             this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 829);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelTree);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.color1);
             this.Controls.Add(this.color2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelDefault);
             this.Controls.Add(this.MainImage);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.ShowIcon = false;
             this.Text = "Фрактальчеке";
             ((System.ComponentModel.ISupportInitialize)(this.MainImage)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -345,7 +340,6 @@ namespace Fractals__sharp_
 
         private System.Windows.Forms.PictureBox MainImage;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -365,6 +359,7 @@ namespace Fractals__sharp_
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

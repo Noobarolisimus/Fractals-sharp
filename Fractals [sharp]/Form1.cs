@@ -17,14 +17,15 @@ namespace Fractals__sharp_
 		public Form1()
 		{
 			InitializeComponent();
+			Icon = Fractals__sharp_.Properties.Resources.logo;
 			BitmapCanvas = new Bitmap(1920, 1080);
-			FractPen = new Pen(FirstColor, 2);
 			CanvasGraphics = Graphics.FromImage(BitmapCanvas);
 			BackgroundImage = new Bitmap(1920, 1080);
 			MainImage.BackgroundImage = BitmapCanvas;
 			color1.BackColor = FirstColor;
 			color2.BackColor = SecondColor;
 			numericUpDown1.Value = Depth;
+			timer1.Interval = 500;
 
 
 			panels[0] = panelDefault;
@@ -63,11 +64,9 @@ namespace Fractals__sharp_
 		private Bitmap BitmapCanvas;
 		private Color FirstColor = Color.Red;// Color.Brown;
 		private Color SecondColor = Color.DarkGreen;
-		private Pen FractPen;
 		private int Depth = 3;
 		private int Angle1 = 45;
 		private int Angle2 = 45;
-		private bool isAngleChanged = false; // название не описывает назначение, но кого волнует
 		private int Longness = 300;
 		private Graphics CanvasGraphics;
 		private CancellationTokenSource cts = new CancellationTokenSource();
@@ -192,7 +191,6 @@ namespace Fractals__sharp_
 				BitmapCanvas.Save(saveFileDialog1.FileName);
 				//MessageBox.Show("Изображение сохранено.");
             }
-
 		}
 
 		private void prepareCanvas()
@@ -231,8 +229,6 @@ namespace Fractals__sharp_
 						break;
 				}
 			}, cts.Token);
-			Width++;
-			Width--;
 		}
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -270,16 +266,6 @@ namespace Fractals__sharp_
 			Width--;**/
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-			MainImage.Refresh();
-			if (isAngleChanged)
-			{
-				drawAFractal(lastFractal);
-				isAngleChanged = false;
-			}
-        }
-
         private void color1_Click(object sender, EventArgs e)
         {
 			if (colorDialog1.ShowDialog() != DialogResult.Cancel)
@@ -306,32 +292,32 @@ namespace Fractals__sharp_
 			drawAFractal(lastFractal);
 		}
 
-        private void panel1_Click(object sender, EventArgs e)
-        {
-			Panel temp = new Panel();
-			temp.BackColor = (lastPanel == 0 ? Color.Orange : Color.Black);
-			temp.Location = new Point(25, 25);
-			temp.Size = new Size(10, 5);
-			temp.Parent = button1;
-			lastPanel = (lastPanel + 1) % 2;
-        }
-
         private void numericUpDown4_ValueChanged(object sender, EventArgs e)
         {
 			Angle1 = (int)((NumericUpDown)sender).Value;
-			isAngleChanged = true;
+			drawAFractal(lastFractal);
         }
 
         private void numericUpDown5_ValueChanged(object sender, EventArgs e)
 		{
 			Angle2 = (int)((NumericUpDown)sender).Value;
-			isAngleChanged = true;
+			drawAFractal(lastFractal);
 		}
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
 			Longness = (int)((NumericUpDown)sender).Value * 50;
-			isAngleChanged = true;
+			drawAFractal(lastFractal);
 		}
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+			MainImage.Refresh();
+        }
+
+        private void MainImage_Click(object sender, EventArgs e)
+        {
+			MessageBox.Show("Сделал Вавилов Роман для школьного проекта\n15.03.2021");
+        }
     }
 }
