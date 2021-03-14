@@ -67,7 +67,6 @@ namespace Fractals__sharp_
 		private Task ActiveTask;
 		private Mutex mutex = new Mutex();
 		private int lastFractal = 2;
-		private int lastPanel = 0;
 		private Panel[] panels = new Panel[4];
 		//private Graphics ImageGraphics;
 		//private Rectangle CanvasRect;
@@ -189,11 +188,15 @@ namespace Fractals__sharp_
 
 		private void prepareCanvas()
         {
-			cts.Cancel();
-			mutex.Close();
-			cts = new CancellationTokenSource();
-			mutex = new Mutex();
-			CanvasGraphics.Clear(Color.FromArgb(255, 255, 255));
+			try
+			{
+				cts.Cancel();
+				mutex.Close();
+				cts = new CancellationTokenSource();
+				mutex = new Mutex();
+				CanvasGraphics.Clear(Color.FromArgb(255, 255, 255));
+			}
+            catch (Exception) { }
 		}
 		
 		private void drawAFractal(int id)
