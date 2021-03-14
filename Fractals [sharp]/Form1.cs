@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-using System.IO;
 
 namespace Fractals__sharp_
 {
@@ -216,7 +210,7 @@ namespace Fractals__sharp_
 						await SierpinskiTriangle(mainTriangle);
 						break;
 					case 2:
-						await TreeFract(new Point(1920 / 2, 1080 / 4), Longness, 0);
+						await TreeFract(new Point(1920 / 2, 1080 / 10), Longness, 0);
 						break;
 					case 3:
 						await KochCurve(new Point(1920 / 100, 1080 - 1080 / 5), new Point(1920 - 1920 / 100, 1080 - 1080 / 5));

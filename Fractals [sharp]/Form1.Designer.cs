@@ -126,9 +126,9 @@ namespace Fractals__sharp_
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(201, 24);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(210, 24);
             this.toolStripMenuItem4.Tag = "4";
-            this.toolStripMenuItem4.Text = "Множество Мальдеброта";
+            this.toolStripMenuItem4.Text = "Множество Мандельброта";
             // 
             // panelDefault
             // 
@@ -266,6 +266,11 @@ namespace Fractals__sharp_
             0,
             0,
             0});
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(150, 27);
             this.numericUpDown4.TabIndex = 9;
@@ -290,6 +295,11 @@ namespace Fractals__sharp_
             0,
             0,
             0});
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(150, 27);
             this.numericUpDown5.TabIndex = 8;
@@ -322,7 +332,7 @@ namespace Fractals__sharp_
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Фрактальчеке";
+            this.Text = "FractViewer";
             ((System.ComponentModel.ISupportInitialize)(this.MainImage)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
