@@ -21,13 +21,10 @@ namespace Fractals__sharp_
 			numericUpDown1.Value = Depth;
 			timer1.Interval = 500;
 
-
 			panels[0] = panelDefault;
 			panels[1] = panelTree;
 			panels[2] = panelDefault;
 			panels[3] = panelDefault;
-
-
 		}
 
 		Point NewPointByAngle(Point Position, double Angle, double Radius)
@@ -68,8 +65,6 @@ namespace Fractals__sharp_
 		private Mutex mutex = new Mutex();
 		private int lastFractal = 2;
 		private Panel[] panels = new Panel[4];
-		//private Graphics ImageGraphics;
-		//private Rectangle CanvasRect;
 		#endregion
 
 		async Task TreeFract(Point Pos, int Radius, int Ang, int Step = 0)
@@ -78,7 +73,7 @@ namespace Fractals__sharp_
 				return ;
 			Point NewPoint = NewPointByAngle(Pos, Ang, Radius);
 			mutex.WaitOne();
-			CanvasGraphics.DrawLine(new Pen(Lerp((Step / (float)Depth), FirstColor, SecondColor), 2), Pos, NewPoint);
+			CanvasGraphics.DrawLine(new Pen(Lerp((Step / (float)Depth), FirstColor, SecondColor), 3), Pos, NewPoint);
 			mutex.ReleaseMutex();
 			await TreeFract(NewPoint, (int)(Radius / 1.5), Ang + Angle1, Step + 1);
 			await TreeFract(NewPoint, (int)(Radius / 1.5), Ang - Angle2, Step + 1);
@@ -168,8 +163,6 @@ namespace Fractals__sharp_
 					if (it < 100)
 					{
 						CanvasGraphics.DrawRectangle(new Pen(Lerp((it / 100.0f), Color.Black, FirstColor), 1), (i + start.X), (j + start.Y), 1f, 1f);
-						//SDL_SetRenderDrawColor(ren, 0xFF * it / 100., 0x00, 0x00, 0x00);
-						//SDL_RenderDrawPoint(ren, (i + start.x), (j + start.y));
 					}
 					//else
 					//	CanvasGraphics.DrawRectangle(new Pen(Color.Black, 1), (i + start.X), (j + start.Y), 1f, 1f);
@@ -315,6 +308,24 @@ namespace Fractals__sharp_
         private void MainImage_Click(object sender, EventArgs e)
         {
 			MessageBox.Show("Сделал Вавилов Роман для школьного проекта\n15.03.2021");
+        }
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			switch (lastFractal) {
+				case 1:
+					help1 q = new help1();
+					q.Show(this);
+					break;
+				case 2:
+					help2 w = new help2();
+					w.Show(this);
+					break;
+				case 4:
+					help3 r = new help3();
+					r.Show(this);
+					break;
+			}
         }
     }
 }
